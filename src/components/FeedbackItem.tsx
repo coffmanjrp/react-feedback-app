@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Card } from '.';
 
 type Props = {
   id: number;
@@ -8,10 +9,10 @@ type Props = {
 
 const FeedbackItem: FC<Props> = ({ rating, text }) => {
   return (
-    <div className="card">
+    <Card>
       <div className="num-display">{rating}</div>
       <div className="text-display">{text}</div>
-    </div>
+    </Card>
   );
 };
 
