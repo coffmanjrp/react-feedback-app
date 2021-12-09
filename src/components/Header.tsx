@@ -7,7 +7,10 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ text, bgColor, textColor }) => {
-  const headerStyles = { backgroundColor: bgColor, color: textColor };
+  const headerStyles = {
+    backgroundColor: bgColor,
+    color: textColor,
+  };
 
   return (
     <header style={headerStyles}>
