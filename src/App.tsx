@@ -1,7 +1,13 @@
 import { FC, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { FeedbackForm, FeedbackList, FeedbackStats, Header } from 'components';
+import {
+  AboutIconLink,
+  FeedbackForm,
+  FeedbackList,
+  FeedbackStats,
+  Header,
+} from 'components';
 import AboutPage from 'pages/AboutPage';
 import FeedbackData from 'data/FeedbackData';
 
@@ -39,6 +45,7 @@ const App: FC = () => {
           />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
+        <AboutIconLink />
       </div>
     </Router>
   );

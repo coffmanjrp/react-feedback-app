@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 type Props = {
   text?: string;
@@ -15,7 +16,12 @@ const Header: FC<Props> = ({ text, bgColor, textColor }) => {
   return (
     <header style={headerStyles}>
       <div className="container">
-        <h2>{text}</h2>
+        <Link
+          to="/"
+          style={{ color: headerStyles.color, textDecoration: 'none' }}
+        >
+          <h2>{text}</h2>
+        </Link>
       </div>
     </header>
   );
