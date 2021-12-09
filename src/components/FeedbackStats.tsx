@@ -1,7 +1,11 @@
 import { FC } from 'react';
 
 type Props = {
-  feedback: any;
+  feedback: {
+    id: number;
+    rating: number;
+    text: string;
+  }[];
 };
 
 const FeedbackStats: FC<Props> = ({ feedback }) => {
