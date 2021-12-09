@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 type Props = {
   feedback: {
-    id: number;
+    id: any;
     rating: number;
     text: string;
   }[];
