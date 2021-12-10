@@ -1,5 +1,4 @@
 import { FC, FormEvent, useContext, useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import FeedbackContext from 'context/FeedbackContext';
 import { Button, Card, RatingSelect } from '.';
 
@@ -38,7 +37,6 @@ const FeedbackForm: FC = () => {
 
     if (text.trim().length > 10) {
       const newFeedback = {
-        id: uuidv4(),
         text,
         rating,
       };

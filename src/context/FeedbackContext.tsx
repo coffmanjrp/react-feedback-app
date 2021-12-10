@@ -1,11 +1,14 @@
-import { createContext, Dispatch, useState, ReactNode } from 'react';
-import FeedbackData from 'data/FeedbackData';
+import { createContext, Dispatch, useEffect, useState, ReactNode } from 'react';
 
 type FeedbackProps = {
   id: any;
   rating: number;
   text: string;
 };
+
+type FeedbackEditProps = { item: FeedbackProps; edit: boolean };
+
+type AddFeedbackProps = (newFeedback: { rating: number; text: string }) => void;
 
 type UpdateFeedback = (
   id: any,
@@ -14,8 +17,9 @@ type UpdateFeedback = (
 
 type ContextProps = {
   feedback: FeedbackProps[];
-  feedbackEdit: { item: FeedbackProps; edit: boolean };
-  addFeedback: Dispatch<FeedbackProps>;
+  feedbackEdit: FeedbackEditProps;
+  isLoading: boolean;
+  addFeedback: AddFeedbackProps;
   deleteFeedback: Dispatch<any>;
   editFeedback: Dispatch<FeedbackProps>;
   updateFeedback: UpdateFeedback;
@@ -24,14 +28,35 @@ type ContextProps = {
 const FeedbackContext = createContext({} as ContextProps);
 
 export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
-  const [feedback, setFeedback] = useState(FeedbackData);
-  const [feedbackEdit, setFeedbackEdit] = useState({
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [feedback, setFeedback] = useState<FeedbackProps[]>([]);
+  const [feedbackEdit, setFeedbackEdit] = useState<FeedbackEditProps>({
     item: { id: null, rating: 0, text: '' },
     edit: false,
   });
 
-  const addFeedback = (newFeedback: FeedbackProps) => {
-    setFeedback([newFeedback, ...feedback]);
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
+  // fetch feedback
+  const fetchFeedback = async () => {
+    const response = await fetch('/feedback?_sort=id&_order=desc');
+    const data = await response.json();
+
+    setFeedback(data);
+    setIsLoading(false);
+  };
+
+  const addFeedback: AddFeedbackProps = async (newFeedback) => {
+    const response = await fetch('/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newFeedback),
+    });
+    const data = await response.json();
+
+    setFeedback([data, ...feedback]);
   };
 
   const deleteFeedback = (id: any) => {
@@ -59,6 +84,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
       value={{
         feedback,
         feedbackEdit,
+        isLoading,
         addFeedback,
         deleteFeedback,
         editFeedback,
