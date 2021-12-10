@@ -1,24 +1,19 @@
 {
   "feedback": [
     {
-      "id": 1,
-      "rating": 10,
-      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae."
-    },
-    {
-      "id": 2,
-      "rating": 9,
-      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae."
-    },
-    {
-      "id": 3,
+      "text": "This is feedback 1",
       "rating": 8,
-      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae."
+      "id": 1
     },
     {
-      "text": "This is a test ",
-      "rating": 5,
-      "id": 4
+      "text": "Message of feedback 2",
+      "rating": 3,
+      "id": 2
+    },
+    {
+      "text": "It is very good! feedback 3",
+      "rating": 10,
+      "id": 3
     }
   ]
 }

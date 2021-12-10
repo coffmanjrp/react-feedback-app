@@ -51,6 +51,7 @@ const FeedbackForm: FC = () => {
       }
 
       setText('');
+      setBtnDisabled(true);
     }
   };
 
